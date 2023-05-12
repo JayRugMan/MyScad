@@ -4,10 +4,16 @@ scale_factor = 0.1;
 surface_file = "initials_5.png";
 
 module initials() {
-  translate([18,-47,30]) 
-  rotate([65,0,270])
-  scale([scale_factor,scale_factor,scale_factor+0.24]) 
-  surface(file = surface_file, center = true, invert = false, convexity = 5);
+//  translate([18,-47,30]) 
+//  rotate([65,0,270])
+  difference() {
+      scale([scale_factor,scale_factor,scale_factor+0.24]) {
+        surface(file = surface_file, center = true, invert = false, convexity = 5);
+        linear_extrude(height = 0.6) { 
+          square([124,87], center = true);
+        }
+      }
+  }
 }
 
 module stand() {
@@ -25,13 +31,15 @@ module center_cutout(x, y, z, r) {
   polygon(points=[[-20,0],[20,10],[20,-10]]);
 };
 
-difference() {
+*difference() {
   stand();
   center_cutout(10,-30,95,0);
   center_cutout(10,10,0,180);
   center_cutout(10,-70,0,180);
   initials();
 }
+
+initials();
 
 
 
