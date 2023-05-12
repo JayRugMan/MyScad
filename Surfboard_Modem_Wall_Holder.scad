@@ -83,18 +83,20 @@ module the_shelf(){
 
 /* Module calls */
 *color("white", 0.9){the_surf(thickness, thickness, thickness);}
-difference(){
-  union(){
-    color("blue"){
-      the_shelf();
-      support();
-      support(the_z=(the_width + thickness));
+rotate([90, 0, 0]) {
+  difference(){
+    union(){
+      color("blue"){
+        the_shelf();
+        support();
+        support(the_z=(the_width + thickness));
+      }
     }
+    screw_hole(the_y = 40,
+              the_z = the_width/2 + thickness);
+    screw_hole(the_y = 80,
+              the_z = the_width/2 + thickness);
   }
-  screw_hole(the_y = 40,
-             the_z = the_width/2 + thickness);
-  screw_hole(the_y = 80,
-             the_z = the_width/2 + thickness);
 }
 
 *screw_hole();
