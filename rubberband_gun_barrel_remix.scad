@@ -26,8 +26,8 @@ bar_tip_offset = bar_tip_rad-2.5;             // x
 scrw_hole_diam = 2.5;                         // x - square side
 scrw_hole_distance = 29.4;                    // x
 
-//a0 = [[-2,0],[0,7.8],[135,7.8],[136,0]];      // main
-//b0 = [0, 1, 2, 3];
+a0 = [[-2,0],[0,7.8],[135,7.8],[136,0]];      // main
+b0 = [0, 1, 2, 3];
 a1 = [                                        // Letter B
       [-2,0],[0,7.8],[15,7.8],                // points A, B, C
       [14.5,7],[12.5,7],[12,6.2],             // points D, E, F
@@ -49,8 +49,8 @@ b1 = [
   22, 23//, 24,
   //25, 26, 27
 ];
-cutout_points = concat (a1);
-cutout_paths = [b1];
+cutout_points = concat (a0);
+cutout_paths = [b0];
 
 sight_height = 21;                            // y - before rotation
 sight_width = z_height;                       // x - before rotation
