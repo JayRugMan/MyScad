@@ -16,7 +16,7 @@ $fn = 500;
 t_outer_diameter = 240;  // tray outer diameter
 
 t_i_diameter = 33.6;  // tube inner diameter
-t_b_o_diameter = 40;  // tube base outer daimeter
+t_b_o_diameter = 40.4;  // tube base outer daimeter
 t_t_o_diamter = 38.4;  // tube top outer diameter
 t_depth = 16.68;  // depth of the inner tray tube
 
@@ -81,9 +81,10 @@ module spool(t_x=0, t_y=0, t_z=0) {
 
 
 module center_print(t_x=0, t_y=0, t_z=0) {
-    max_gap = ( t_stack_depth - (t_bed_thickness + t_l_dip) );
-    inlay_length = 12;
-    inlay_diameter = t_t_o_diamter + 1.2;
+    max_gap = ( t_stack_depth - (t_bed_thickness + t_l_dip + 0.24) );
+    inlay_length = 14.8;  // How deep into the cylinder does cutout go?
+    //inlay_diameter = t_t_o_diamter + 1.2;
+    inlay_diameter = t_b_o_diameter + .4;
 
     center_hole_diameter = t_i_diameter;
     tube_diameter = sp_c_h_diameter - 5.08;
@@ -107,11 +108,11 @@ module center_print(t_x=0, t_y=0, t_z=0) {
 
 
 module cutaway() {
-    spool(t_z=t_bed_thickness);
+    *spool(t_z=t_bed_thickness);
     difference() {
         union() {
             tray();
-            center_print(t_z=(t_depth - 12));
+            center_print(t_z=(t_depth - 14.8));
         }
         rotate([0, 0, 90]) {
             translate([-120, 0, -1]) {
@@ -123,5 +124,5 @@ module cutaway() {
 
 
 /*** Module Calls ***/
-*cutaway();
-center_print();
+cutaway();
+*center_print();
