@@ -124,5 +124,5 @@ module cutaway() {
 
 
 /*** Module Calls ***/
-cutaway();
-*center_print();
+*cutaway();
+center_print();
