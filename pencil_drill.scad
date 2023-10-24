@@ -76,6 +76,12 @@ module lathe_bit(t_x=0, t_y=0, t_z=0) {
             );
         }
     }
+
+    // Collar
+    translate([LB_X/2, LB_Y/2, LB_Z]) {
+        linear_extrude(height = COLL_DEPTH, scale = 1.584821429, $fn = 16) {circle(d=BIT_LANS_DIST, $fn=6);}
+    }
+
     // Drill Insert
     translate([LB_X/2, LB_Y/2, 0]) {
         linear_extrude(LB_Z) {
@@ -92,6 +98,3 @@ module lathe_bit(t_x=0, t_y=0, t_z=0) {
        t_z=10
 );
 color("white", 1.0) {lathe_bit();}
-translate([LB_X/2, LB_Y/2, LB_Z]) {
-    linear_extrude(height = COLL_DEPTH, scale = 1.584821429, $fn = 16) {circle(d=BIT_LANS_DIST, $fn=6);}
-}
