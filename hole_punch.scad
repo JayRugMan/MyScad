@@ -1,5 +1,5 @@
 /********************************************/
-/*     TITLE     */
+/*     import stl and punch a hole in it    */
 /*                                          */
 /*        Created by Jason Hardman          */
 /*               2023-10-21                 */
@@ -23,14 +23,14 @@ module the_cyl(tx=0, ty=0, tz=0, ch=5, cir=5 ) {
 
 
 module whole_medal(
-    medal_stl="",
-    o_cyr_h = 0, 
-    i_cir = 0, 
-    tran_x = 0, 
-    tran_y = 0,
-    mx = 0,
-    my = 0,
-    scl = 1
+    medal_stl="",             // stl file to import
+    o_cyr_h = 0,              // Outter Cylinder height
+    i_cir = 0,                // Inner hole circumfrence
+    tran_x = 0,               // Inner/Outter hole x translation
+    tran_y = 0,               // Inner/Outter hole y translation
+    mx = 0,                   // STL file x translation
+    my = 0,                   // STL file y translation
+    scl = 1                   // STL scale ( can be number or list of axese [x, y, z] )
     ) {
     // Medal with Hole
 
