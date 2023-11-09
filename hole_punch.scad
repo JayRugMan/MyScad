@@ -22,8 +22,8 @@ module the_cyl(tx=0, ty=0, tz=0, ch=5, cir=5 ) {
 }
 
 
-module whole_medal(
-    medal_stl="",             // stl file to import
+module final_object(
+    the_stl="",               // STL file to import
     o_cyr_h = 0,              // Outter Cylinder height
     i_cir = 0,                // Inner hole circumfrence
     tran_x = 0,               // Inner/Outter hole x translation
@@ -32,7 +32,7 @@ module whole_medal(
     my = 0,                   // STL file y translation
     scl = 1                   // STL scale ( can be number or list of axese [x, y, z] )
     ) {
-    // Medal with Hole
+    // stl with Hole
 
     i_cyr_h = o_cyr_h+1;      // inner cyl height
     o_cir = i_cir*1.6;        // outer circumfrence
@@ -41,7 +41,7 @@ module whole_medal(
     difference() {
         union() {
             translate([mx, my, 0]) {
-                scale(scl) import(medal_stl);
+                scale(scl) import(the_stl);
             }
             the_cyl(tx=tran_x, ty=tran_y, tz=tran_z, ch=o_cyr_h, cir=o_cir);
         }
@@ -54,8 +54,8 @@ module whole_medal(
 /* Module Calls */
 
 translate([-50,0, 0]) {
-    whole_medal(
-        medal_stl="Republic.stl",
+    final_object(
+        the_stl="Republic.stl",
         o_cyr_h = 3, 
         i_cir = 3, 
         tran_x = 0, 
@@ -68,8 +68,8 @@ translate([-50,0, 0]) {
 
 
 translate([50,0, 0]) {
-    whole_medal(
-        medal_stl="Mandalorian_Circle_Background.stl",
+    final_object(
+        the_stl="Mandalorian_Circle_Background.stl",
         o_cyr_h = 3.3, 
         i_cir = 3, 
         tran_x = 0, 
