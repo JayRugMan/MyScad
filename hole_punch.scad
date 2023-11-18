@@ -41,7 +41,7 @@ module final_object(
     difference() {
         union() {
             translate([mx, my, 0]) {
-                scale(scl) import(the_stl);
+                scale(scl) import(the_stl, convexity = 3);
             }
             the_cyl(tx=tran_x, ty=tran_y, tz=tran_z, ch=o_cyr_h, cir=o_cir);
         }
