@@ -1,18 +1,16 @@
 fn = 100;
 
-scale_factor = 0.1;
-surface_file = "initials_5.png";
+scale_factor = 0.02;
+surface_file = "initials_7.png";
 
-module initials() {
-//  translate([18,-47,30]) 
-//  rotate([65,0,270])
+module initials(tx=0, ty=0, tz=0, rx=0, ry=0, rz=0) {
+  translate([tx,ty,tz+2.99]) 
+  rotate([rx,ry,rz])
   difference() {
-      scale([scale_factor,scale_factor,scale_factor+0.24]) {
-        surface(file = surface_file, center = true, invert = false, convexity = 5);
-        linear_extrude(height = 0.6) { 
-          square([124,87], center = true);
-        }
-      }
+    scale([scale_factor,scale_factor,scale_factor+0.01]) {
+      surface(file = surface_file, center = true, invert = true, convexity = 5);
+    }
+    translate([0,0,-0.02]) cube([12.5,8.75,0.06], center=true);
   }
 }
 
@@ -31,15 +29,13 @@ module center_cutout(x, y, z, r) {
   polygon(points=[[-20,0],[20,10],[20,-10]]);
 };
 
-*difference() {
+difference() {
   stand();
   center_cutout(10,-30,95,0);
   center_cutout(10,10,0,180);
   center_cutout(10,-70,0,180);
-  initials();
+  initials(20,-47,30,115.5,0,90);  //initials(16.5,-47,30,65,0,270);
 }
 
-initials();
-
-
-
+*initials(16.5,-47,30,125,0,90);
+*color("red") translate([0,0,-0.02]) cube([12.5,8.75,0.06], center=true);
