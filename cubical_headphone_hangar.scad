@@ -6,8 +6,10 @@
 /*                                          */
 /********************************************/
 
-$fn = 500;
+$fn = 100;
 
+scale_factor = 0.02;
+surface_file = "initials_7.png";
 
 // Measurements
 
@@ -18,8 +20,9 @@ HOOK_DISTANCE = 50.5;       // The distance between the three hooks
 HOOK_SPACE = 2.8;           // The space between hook and stem
 HOOK_HEIGHT_A = 12.3;       // Hieght of entire hook
 HOOK_HEIGHT_B = 6.5;        // Hieght of hook from space to top
+HOOK_CONE_H = 3;
 
-HEIGHT = 112;               // Hieght of the piece
+HEIGHT = 113.3;               // Hieght of the piece
 STEM_WIDTH = 12.2;          // Width of stem
 
 TOP_LENGTH = 100.6;         // Total of the length of the hang
@@ -33,17 +36,31 @@ SUPPORT_CUTOUT_AB = 27.9;   // Short sides of support internal triangle
 
 // Modules and Functions
 
+module initials(tx=0, ty=0, tz=0, rx=0, ry=0, rz=0) {
+  translate([tx,ty,tz+2.99]) 
+  rotate([rx,ry,rz])
+  difference() {
+    scale([scale_factor,scale_factor,scale_factor+0.01]) {
+      surface(file = surface_file, center = true, invert = true, convexity = 5);
+    }
+    translate([0,0,-0.02]) cube([12.5,8.75,0.06], center=true);
+  }
+}
+
 module hook(tx=0, ty=0, tz=0) {
     // Module for a hook
-    translate([tx,ty,tz]) {
+    translate([tx,ty+HOOK_CONE_H,tz]) {
         union() {
-            translate([0,HOOK_HEIGHT_A,RADIUS]) {
-                rotate([90,0,0]) {
-                    cylinder(h=HOOK_HEIGHT_A, r=RADIUS);
+            translate([0,0,RADIUS]) {
+                rotate([270,0,0]) {
+                    union() {
+                        cylinder(h=HOOK_HEIGHT_A, r=RADIUS);}
+                        translate([0,0,-HOOK_CONE_H]) {cylinder(h=HOOK_CONE_H, r1=0.4, r2=RADIUS);
+                    }
                 }
             }
             translate([0,HOOK_HEIGHT_A-HOOK_HEIGHT_B,0]) {
-                linear_extrude(height = THICKNESS) square([HOOK_SPACE, HOOK_HEIGHT_B], center=false);
+                linear_extrude(height = THICKNESS) square([RADIUS+HOOK_SPACE, HOOK_HEIGHT_B], center=false);
             }
         }
     }
@@ -91,12 +108,16 @@ module support(tx=0, ty=0, tz=0) {
 
 // Module Calls
 
-*stem();
-*top(ty=TOP_POSITION);
-*support(tx=STEM_WIDTH,ty=TOP_POSITION-SUPPORT_AB);
+stem();
+difference() {
+    top(ty=TOP_POSITION);
+    initials(50,86,1,0,180,0);
+}
+support(tx=STEM_WIDTH,ty=TOP_POSITION-SUPPORT_AB);
+for (i = [-HOOK_CONE_H:HOOK_DISTANCE:120]) {
+    hook(tx=-HOOK_SPACE-RADIUS,ty=i);
+}
 
-hook();
-
-*color("red") translate([105,TOP_POSITION,0]) {
-    cube([THICKNESS,23.5,THICKNESS]);
+*color("red") translate([RADIUS,0,0]) {
+    cube([HOOK_SPACE,HOOK_HEIGHT_A-HOOK_HEIGHT_B,THICKNESS]);
 }
