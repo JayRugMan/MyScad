@@ -11,7 +11,8 @@ $fn = 500;
 /* Layer Hieght at 0.12 MM */
 
 /* Dimensions */
-hole_diam = 19.45;
+//hole_diam = 19.45;
+hole_diam = 25.4;
 hole_depth = 8;
 
 plug_outer_diam = hole_diam + 0.2;
@@ -19,10 +20,12 @@ wall_thickness = 1.4;
 plug_inner_diam = plug_outer_diam - (2*wall_thickness);
 
 cap_diam = hole_diam * 1.3; 
-cap_lip_thkns = 3;
+//cap_lip_thkns = 3;
+cap_lip_thkns = 6;
 
 cable_run_length = (cap_diam/2 - plug_outer_diam/2) + wall_thickness;
-cable_thickness = 4.8;
+//cable_thickness = 4.8;
+cable_thickness = 6;
 cable_run_height = hole_depth + cap_lip_thkns;
 
 
