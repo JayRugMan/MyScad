@@ -13,17 +13,18 @@ surface_file = "initials_7.png";
 
 // Measurements
 
-THICKNESS = 5.2;                                  // Thickness of the piece
+THICKNESS = 5.4;                                  // Thickness of the piece
 RADIUS = THICKNESS/2;                             // Radius of hanging edge
 
-HOOK_SPACING = 44.4;                              // The space between top of hook and bottom of next hook
+HOOK_SPACING = 46.5;                              // The space between top of hook and bottom of next hook
 HOOK_ATTA_HEIGHT = 6.3;                           // Hieght of where the hook attaches to the stem
 HOOK_DISTANCE = HOOK_SPACING + HOOK_ATTA_HEIGHT;  // The distance between the three hooks
 HOOK_SPACE = 2.8;                                 // The space between hook and stem
 HOOK_HEIGHT = 12;                                 // Hieght of entire hook
 HOOK_CONE_H = 3;
 
-HEIGHT = 114.1;                                   // Hieght of the piece
+HEIGHT = (HOOK_HEIGHT-HOOK_CONE_H+(HOOK_DISTANCE*2));
+//HEIGHT = 114.1;                                   // Hieght of the piece
 STEM_WIDTH = 12.2;                                // Width of stem
 
 TOP_LENGTH = 100.6;                               // Total of the length of the hang
@@ -112,7 +113,7 @@ module support(tx=0, ty=0, tz=0) {
 stem();
 difference() {
    top(ty=TOP_POSITION);
-   initials(50,86,1,0,180,0);
+   //initials(50,86,1,0,180,0);
 }
 support(tx=STEM_WIDTH,ty=TOP_POSITION-SUPPORT_AB);
 for (i = [0:HOOK_DISTANCE:120]) {
