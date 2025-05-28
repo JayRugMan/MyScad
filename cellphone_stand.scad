@@ -1,18 +1,6 @@
-fn = 100;
+$fn = 100;
 
-scale_factor = 0.02;
-surface_file = "initials_7.png";
-
-module initials(tx=0, ty=0, tz=0, rx=0, ry=0, rz=0) {
-  translate([tx,ty,tz+2.99]) 
-  rotate([rx,ry,rz])
-  difference() {
-    scale([scale_factor,scale_factor,scale_factor+0.01]) {
-      surface(file = surface_file, center = true, invert = true, convexity = 5);
-    }
-    translate([0,0,-0.02]) cube([12.5,8.75,0.06], center=true);
-  }
-}
+include <./initials.scad>;
 
 module stand() {
   rotate([90,0,0])
@@ -34,8 +22,8 @@ difference() {
   center_cutout(10,-30,95,0);
   center_cutout(10,10,0,180);
   center_cutout(10,-70,0,180);
-  initials(20,-47,30,115.5,0,90);  //initials(16.5,-47,30,65,0,270);
+  initials(15.8,-47,30,116.2,0,90);
 }
 
-*initials(16.5,-47,30,125,0,90);
+*initials(15.8,-61,30,116.2,0,90);
 *color("red") translate([0,0,-0.02]) cube([12.5,8.75,0.06], center=true);

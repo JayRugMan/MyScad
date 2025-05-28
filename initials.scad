@@ -6,7 +6,7 @@
 /*                                          */
 /********************************************/
 
-$fn = 100;
+//$fn = 100;
 
 // Functions
 
@@ -77,7 +77,7 @@ module j_hook(r_outer=30, r_inner=15, angle=180, steps=100) {
     outer_path = [ for (i = [0 : steps]) i ];
     inner_path = array_reverse([ for (i = [steps + 1 : 2 * (steps + 1) - 1]) i ]);
 
-    polygon(points=points, paths=[outer_path, inner_path], convexity=10);
+    polygon(points,[outer_path, inner_path],10);
 }
 
 module the_j () {
