@@ -8,8 +8,7 @@
 
 $fn = 100;
 
-scale_factor = 0.02;
-surface_file = "initials_7.png";
+include <./initials.scad>;
 
 // Measurements
 
@@ -37,17 +36,6 @@ SUPPORT_CUTOUT_AB = 27.9;                         // Short sides of support inte
 
 
 // Modules and Functions
-
-module initials(tx=0, ty=0, tz=0, rx=0, ry=0, rz=0) {
-  translate([tx,ty,tz+2.99]) 
-  rotate([rx,ry,rz])
-  difference() {
-    scale([scale_factor,scale_factor,scale_factor+0.01]) {
-      surface(file = surface_file, center = true, invert = true, convexity = 5);
-    }
-    translate([0,0,-0.02]) cube([12.5,8.75,0.06], center=true);
-  }
-}
 
 module hook(tx=0, ty=0, tz=0) {
     // Module for a hook
@@ -113,7 +101,7 @@ module support(tx=0, ty=0, tz=0) {
 stem();
 difference() {
    top(ty=TOP_POSITION);
-   //initials(50,86,1,0,180,0);
+   initials(50,86,5.6,0,180,0);
 }
 support(tx=STEM_WIDTH,ty=TOP_POSITION-SUPPORT_AB);
 for (i = [0:HOOK_DISTANCE:120]) {
@@ -125,3 +113,4 @@ for (i = [0:HOOK_DISTANCE:120]) {
 }
 
 *hook();
+*initials(50,86,5.6,0,180,0);
