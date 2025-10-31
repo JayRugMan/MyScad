@@ -77,8 +77,8 @@ module clip_cone(
 
 // ----- Example Usage -----
 clip_cone(
-    d_base=40, h=45,
-    d_clip_hole=37,
+    d_base=50, h=55,
+    d_clip_hole=47,
     cardboard_thickness=1,
     post_height_above=1.5,
     post_height_below=1.5,
@@ -91,9 +91,9 @@ clip_cone(
 
 // ----- Example Usage -----
 clip_cone(
-    x=50, y=0, z=0,
-    d_base=40, h=45,
-    d_clip_hole=37,
+    x=60, y=0, z=0,
+    d_base=50, h=55,
+    d_clip_hole=47,
     cardboard_thickness=1,
     post_height_above=1.5,
     post_height_below=1.5,
