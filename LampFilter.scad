@@ -8,7 +8,9 @@ $fn = 300; // smooth surface quality
 
 // dimensions
 difdiam = 75; // diameter of the diffuser
-diff_thickness = 0.6; // thickness
+layer_thickness = 0.2; // layer thickness
+diffuser_layer_count = 8; // number of layers in the diffuser
+diff_thickness = layer_thickness * diffuser_layer_count; // thickness
 lip_outer_diameter = 70.75; // diameter of the lip
 lip_inner_diameter = 68.32; // inner lip diameter
 lip_height = 6; // how far the lip is extruded from the diffuser
