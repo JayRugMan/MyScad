@@ -30,9 +30,9 @@ overhang = 30; // mm of overhang
 
 module spacer() {
     // base, which will be the top that goes over each tile being spaced
-    cube([tile_spacing_mm + (overhang * 2), spacer_width, overhang_thickness]);
+    cube([tile_spacing_mm + (overhang), spacer_width, overhang_thickness]);
     // actual spacer between tiles
-    translate([overhang,0,overhang_thickness]) cube([tile_spacing_mm, spacer_width, t_thick_mm - 5]);
+    translate([overhang,0,overhang_thickness]) cube([tile_spacing_mm, spacer_width, t_thick_mm]);
 }
 
 // display
